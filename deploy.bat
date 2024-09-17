@@ -1,4 +1,4 @@
-docker buildx build -t ohmfordevdocker/fe.react.bun:0.1 . --push 
+docker build -t push natnon/bun-docker:v1 . --push 
 
 
-# sudo docker run -d -p 8119:8119 --name product-app ohmfordevdocker/fe.react.bun:0.1
+# sudo docker run -d -p 8119:8119 natnon/bun-docker:v1
