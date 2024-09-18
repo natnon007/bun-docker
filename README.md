@@ -71,7 +71,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 1. Build bun Production และ โยนใส่ nginx
 
-2. ตั้งค่า Nginx ให้ใช้รับ Port 8119
+2. ตั้งค่า Nginx โดยกำหนด Port 8119
 ```
    server {
     listen       8119;
