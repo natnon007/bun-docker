@@ -21,8 +21,10 @@ COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
 
 CMD ["nginx", "-g", "daemon off;"]
 ```
-**คำอธิบายคำสั่งใน dockerFile**
-**1. ใช้ image oven/bun:1 เป็นฐานในการสร้างขั้นตอนการ build และตั้งชื่อขั้นตอนนี้ว่า builder.**/
+\
+**คำอธิบายคำสั่งใน dockerFile**\
+\
+**1. ใช้ image oven/bun:1 เป็นฐานในการสร้างขั้นตอนการ build และตั้งชื่อขั้นตอนนี้ว่า builder.**\
 **2. oven/bun:1 เป็น Docker image ที่ติดตั้ง Bun (เครื่องมือจัดการแพ็คเกจ) ซึ่งจะใช้ในการติดตั้ง dependencies และสร้างโปรเจกต์**
 
 `FROM oven/bun:1 as builder`
@@ -55,7 +57,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 `COPY nginx.conf /etc/nginx/conf.d/default.conf`
 
-**10. คัดลอกไฟล์ที่สร้างขึ้นจากขั้นตอน builder (โดยใช้ชื่อ builder) จากไดเรกทอรี /usr/src/app/dist ไปยัง /usr/share/nginx/html ใน image ของ Nginx.**/
+**10. คัดลอกไฟล์ที่สร้างขึ้นจากขั้นตอน builder (โดยใช้ชื่อ builder) จากไดเรกทอรี /usr/src/app/dist ไปยัง /usr/share/nginx/html ใน image ของ Nginx.**\
 **11. ไฟล์ในไดเรกทอรี /usr/share/nginx/html จะถูกให้บริการโดย Nginx.**
 
 `COPY --from=builder /usr/src/app/dist /usr/share/nginx/html`
@@ -64,11 +66,14 @@ CMD ["nginx", "-g", "daemon off;"]
 
 `CMD ["nginx", "-g", "daemon off;"]`
 
+\
 **การ Deploy**
+
 1. Build bun Production และ โยนใส่ nginx
 
 2. ตั้งค่า Nginx ให้ใช้รับ Port 8119
-server {
+```
+   server {
     listen       8119;
     server_name  localhost;
     location / {
@@ -80,7 +85,8 @@ server {
     location = /50x.html {
         root   /usr/share/nginx/html;
     }
-}
+  }
+```
 
 3.ตั้งชื่อ Repository
 Docker Hub ชื่อ 
