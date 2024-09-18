@@ -1,6 +1,29 @@
 IP http://18.142.160.167:8119/
 
 DockerFile
+
+`
+FROM oven/bun:1 as builder
+
+WORKDIR /usr/src/app
+
+COPY package.json bun.lockb* ./
+
+RUN bun install
+COPY . .
+RUN bun run build
+
+FROM nginx:alpine
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
+`
+
+
+DockerFile
 **ใช้ image oven/bun:1 เป็นฐานในการสร้างขั้นตอนการ build และตั้งชื่อขั้นตอนนี้ว่า builder.**
 **oven/bun:1 เป็น Docker image ที่ติดตั้ง Bun (เครื่องมือจัดการแพ็คเกจ) ซึ่งจะใช้ในการติดตั้ง dependencies และสร้างโปรเจกต์**
 
