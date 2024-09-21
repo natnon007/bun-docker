@@ -95,7 +95,10 @@ sudo docker build -t natnon/bun-docker:v1 . --push
 
 4. สร้าง Instance EC2
 5. ติดตั้ง Docker 
-6. ทำการ Login 
+6. โหลด docker images จาก docker hub
+```
+docker pull natnon/bun-docker:v1
+```
 7. รันคำสั่ง
 ```
 sudo docker run -d -p 8119:8119 natnon/bun-docker:v1
