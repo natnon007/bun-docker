@@ -1,4 +1,4 @@
-IP http://52.66.47.121:8119/
+IP http://52.66.47.121:8119/   (Terminated)
 
 **DockerFile**
 
